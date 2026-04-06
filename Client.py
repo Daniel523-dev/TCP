@@ -1,4 +1,4 @@
-import Watcher, time, Network, os, Encryption, util, socket, getpass, hashlib, random, traceback, zipfile, tempfile, shutil, threading, subprocess
+import Watcher, time, Network, os, Encryption, util, socket, getpass, hashlib, random, traceback, zipfile, tempfile, shutil, threading, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor
 if os.name == "nt":CLEAR=lambda:subprocess.run('cls', shell=True)
 elif os.name == "posix":CLEAR=lambda:subprocess.run('clear', shell=True)
@@ -8,7 +8,9 @@ DEBUG=True
 ROOT=os.path.expanduser('~')
 SHARED = ROOT + os.sep + 'Shared - Client'
 threading.Thread(target=Watcher.main,kwargs={'PATH': SHARED, 'cache_file': '.client_index'}).start()
-try:CA = [enc.load_key(ROOT + os.sep + 'Client - Keys' + os.sep + 'CA_pub.pem'),enc.load_key(ROOT + os.sep + 'Client - Keys' + os.sep + 'CA_cert.pem')]
+try:
+    if '--new' in sys.argv:raise Exception
+    CA = [enc.load_key(ROOT + os.sep + 'Client - Keys' + os.sep + 'CA_pub.pem'),enc.load_key(ROOT + os.sep + 'Client - Keys' + os.sep + 'CA_cert.pem')]
 except:
     path = input('ClientData path: ')
     tmp = tempfile.mkdtemp()

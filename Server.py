@@ -1,4 +1,4 @@
-import Watcher, time, Network, os, Encryption, shutil, util, getpass, subprocess, hashlib, tempfile, threading
+import Watcher, time, Network, os, Encryption, shutil, util, getpass, subprocess, hashlib, tempfile, threading, sys
 subprocess.run('clear', shell=True)
 enc=Encryption
 DEBUG=False
@@ -137,7 +137,7 @@ def on_new_thread(CID, TID):
             os.replace(SHARED + '/' + path + '.tmp', SHARED + '/' + path)
 if util.test_main('SERVER: MAIN'):
     threading.Thread(target=Watcher.main, kwargs={'PATH':SHARED,'cache_file':'.server_index'}).start()
-    if False:
+    if '--new' in sys.argv:
         input('Creating new keys (press enter)')
         CA=create_new_keys()
     else:CA=load_CA(password=util.str_to_bytes(getpass.getpass('CA PASSWORD: ')))
