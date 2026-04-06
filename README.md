@@ -5,6 +5,7 @@ FTP server & client by Daniel J Murphy
 Bidirectionally synchronizes ```~/Shared - Server``` (server-side) with ```~/Shared - Client``` (client-side) across all connected clients over an encrypted connection.
 ---
 Server keys can be reset by running the server with the ```--new``` flag. This process also initializes ```~/ClientData```.
+
 To update the client-side server key store, the client must be started with ```--new```, which prompts for the path to the ClientData archive.
 
 The ```ClientData``` archive is typically 1 to 2 Kb and never contains sensitive information.
